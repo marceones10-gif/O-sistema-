@@ -8,13 +8,15 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: kivy/buildozer:latest
     steps:
     - uses: actions/checkout@v4
-    
+
     - name: Build APK
-      run: buildozer android debug
-      
+      uses: digreatbrian/buildozer-action@v2
+      with:
+        python-version: 3.11
+        buildozer-cmd: buildozer android debug
+
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
